@@ -1,11 +1,11 @@
 ﻿using CRUD_Repository.DTO;
 using Paz_o.Models;
+using Paz_o.Models.model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 namespace CRUD_Services.Services
 {
     public class CategorysService : ICategorysService
@@ -17,12 +17,20 @@ namespace CRUD_Services.Services
         }
         public void AddNewCategory(CategoriesDTO categoriesDTO)
         {
-            throw new NotImplementedException();
+            _northwind.Categories.Add(new Category
+            {
+                CategoryName = categoriesDTO.CategoryName,
+                Description = categoriesDTO.Description,
+                Picture = categoriesDTO.Picture,
+            });
+            _northwind.SaveChanges();
         }
 
-        public void DeleteCategory(string number)
+        public void DeleteCategory(int number)
         {
-            throw new NotImplementedException();
+            var category = _northwind.Categories.Where(c => c.CategoryId == number).First();
+            _northwind.Remove(category);
+            _northwind.SaveChanges();
         }
 
         public void EditCategory(CategoriesDTO categoriesDTO)

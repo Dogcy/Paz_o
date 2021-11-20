@@ -11,6 +11,7 @@ namespace CRUD_Repository.DTO
         public int CategoryID { get; set; }
         public string CategoryName { get; set; }
         public string Description { get; set; }
-        public string Picture { get; set; }
+        public byte[] Picture { get; set; }
+        public DateTime? CreateTime { get; set; }
     }
 }

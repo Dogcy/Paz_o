@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace CRUD_Services.Services
 {
-    internal interface ICategorysService
+    public interface ICategorysService
     {
         void AddNewCategory(CategoriesDTO categoriesDTO);
-        void DeleteCategory(string number);
+        void DeleteCategory(int number);
         void EditCategory(CategoriesDTO categoriesDTO);
         List<CategoriesDTO> GetAllCategory();
     }
