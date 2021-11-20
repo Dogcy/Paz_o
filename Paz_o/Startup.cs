@@ -29,6 +29,8 @@ namespace Paz_o
             services.AddControllersWithViews();
             var dbContext = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json").Build()["ConnectionStrings:Northwind"];
             services.AddDbContext<NorthwindContext>(options => options.UseSqlServer(dbContext));
+
+            services.AddScoped<NorthwindContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

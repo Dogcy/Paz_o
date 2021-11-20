@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CRUD_Repository\CRUD_Repository.csproj" />
+    <ProjectReference Include="..\Paz_o\Paz_o.csproj" />
   </ItemGroup>
 
 </Project>
