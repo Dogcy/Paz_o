@@ -1,11 +1,14 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Paz_o.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -24,6 +27,8 @@ namespace Paz_o
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            var dbContext = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json").Build()["ConnectionStrings:Northwind"];
+            services.AddDbContext<NorthwindContext>(options => options.UseSqlServer(dbContext));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
