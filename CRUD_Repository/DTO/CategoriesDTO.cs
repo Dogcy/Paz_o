@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CRUD_Repository.DTO
 {
-    internal class CategoriesDTO
+    public class CategoriesDTO
     {
         public int CategoryID { get; set; }
         public string CategoryName { get; set; }
