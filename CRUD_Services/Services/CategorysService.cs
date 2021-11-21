@@ -21,7 +21,7 @@ namespace CRUD_Services.Services
             {
                 CategoryName = categoriesDTO.CategoryName,
                 Description = categoriesDTO.Description,
-                Picture = categoriesDTO.Picture,
+
             });
             _northwind.SaveChanges();
         }
@@ -38,7 +38,6 @@ namespace CRUD_Services.Services
             var category = _northwind.Categories.Where(c => c.CategoryId == categoriesDTO.CategoryID).First();
             category.CategoryName = categoriesDTO.CategoryName;
             category.Description = categoriesDTO.Description;
-            category.Picture = categoriesDTO.Picture;
             _northwind.SaveChanges();
         }
 
@@ -50,7 +49,6 @@ namespace CRUD_Services.Services
                     CategoryID = c.CategoryId,
                     CategoryName = c.CategoryName,
                     Description = c.Description,
-                    Picture = c.Picture
                 }).ToList();
         }
     }

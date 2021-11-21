@@ -1,22 +1,27 @@
 ﻿<div id="CategoriesId" class="row mt-5">
 	<table class="table mt-2">
+
 		<thead>
 			<tr>
 				<th>ID</th>
 				<th>NAME</th>
 				<th>DESCRIPT</th>
-				<th>PICTURE</th>
 			</tr>
 		</thead>
 		<tbody>
+			<tr>
+				<th><input type="text" disabled /></th>
+				<th><input type="text" /></th>
+				<th><input type="text" /></th>
+				<th><button class="btn btn-danger" v-on:click="addNew" style="font-size:12px">新增編輯</button></th>
+			</tr>
 			<tr v-for="(categorie, index) in categories">
 				<th>{{categorie.categoryID}}</th>
 				<th>{{categorie.categoryName}}</th>
 				<th>{{categorie.description}}</th>
-				<th>{{categorie.picture}}</th>
 				<th>
-@*					<button :data-number="course.number" type="button" class="btn btn-danger">刪除</button>
-					<button :data-number="course.number" type="button" class="btn btn-warning">編輯</button>*@
+					@*					<button :data-number="course.number" type="button" class="btn btn-danger">刪除</button>
+						<button :data-number="course.number" type="button" class="btn btn-warning">編輯</button>*@
 				</th>
 
 			</tr>
@@ -26,12 +31,24 @@
 <script>
 	var CategoriesId = new Vue({
 	el:'#CategoriesId',
-	data:{	
+	data:{
+		addEditItem:{
+			CategoryID:"20",
+			CategoryName:"1",
+			Description:"2",
+		},
 		categories:null,
 	},created(){
 		axios
 		.get('/api/Paz')
 		.then(response=>{ this.categories=response.data;console.log(this.categories)});
+	},methods:{
+		addNew(){
+		axios
+		.post('/api/Paz',this.addEditItem).then(response => {
+						alert("新增成功");
+					})   
+		},
 	}
 	});
 
