@@ -1,4 +1,5 @@
-﻿using CRUD_Services.Services;
+﻿using CRUD_Repository.DTO;
+using CRUD_Services.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,22 +19,25 @@ namespace Paz_o.Controllers.API
         public IActionResult GetCategories()
         {
 
-            return Ok();
+            return Ok(_categorysService.GetAllCategory());
         }
         [HttpPost]
-        public IActionResult AddCategory()
+        public IActionResult AddCategory(CategoriesDTO category)
         {
+            _categorysService.AddNewCategory(category);
             return Ok();
         }
 
         [HttpPut]
-        public IActionResult EditCategory()
+        public IActionResult EditCategory(CategoriesDTO category)
         {
+            _categorysService.EditCategory(category);
             return Ok();
         }
-        [HttpDelete]
-        public IActionResult DeleteCategory()
+        [HttpDelete, Route("{number}")]
+        public IActionResult DeleteCategory(int Id)
         {
+            _categorysService.DeleteCategory(Id);
             return Ok();
         }
     }
