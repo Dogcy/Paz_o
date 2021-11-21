@@ -1,6 +1,6 @@
 ﻿using CRUD_Repository.DTO;
-using Paz_o.Models;
-using Paz_o.Models.model;
+using CRUD_Repository.Models;
+using CRUD_Repository.Models.model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 namespace CRUD_Services.Services
 {
-    public class CategorysService : ICategorysService
+    public class CategorysService :ICategorysService
     {
         private readonly NorthwindContext _northwind;
         public CategorysService(NorthwindContext northwindContext)
@@ -35,12 +35,23 @@ namespace CRUD_Services.Services
 
         public void EditCategory(CategoriesDTO categoriesDTO)
         {
-            throw new NotImplementedException();
+            var category = _northwind.Categories.Where(c => c.CategoryId == categoriesDTO.CategoryID).First();
+            category.CategoryName = categoriesDTO.CategoryName;
+            category.Description = categoriesDTO.Description;
+            category.Picture = categoriesDTO.Picture;
+            _northwind.SaveChanges();
         }
 
         public List<CategoriesDTO> GetAllCategory()
         {
-            throw new NotImplementedException();
+            return _northwind.Categories.Select(
+                c => new CategoriesDTO()
+                {
+                    CategoryID = c.CategoryId,
+                    CategoryName = c.CategoryName,
+                    Description = c.Description,
+                    Picture = c.Picture
+                }).ToList();
         }
     }
 }

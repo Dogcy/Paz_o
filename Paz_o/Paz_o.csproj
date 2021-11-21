@@ -17,4 +17,9 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CRUD_Repository\CRUD_Repository.csproj" />
+    <ProjectReference Include="..\CRUD_Services\CRUD_Services.csproj" />
+  </ItemGroup>
+
 </Project>
